@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/guowenxuan/文档/学习资料/数据结构/STLite/priority_queue/data/five/code.cpp
+iostream
+-
+cstdio
+-
+algorithm
+-
+queue
+-
+ctime
+-
+cstdlib
+-
+../../priority_queue.hpp
+/Users/guowenxuan/文档/学习资料/数据结构/STLite/priority_queue/priority_queue.hpp
+
+/Users/guowenxuan/文档/学习资料/数据结构/STLite/priority_queue/exceptions.hpp
+cstddef
+-
+cstring
+-
+string
+-
+
+/Users/guowenxuan/文档/学习资料/数据结构/STLite/priority_queue/priority_queue.hpp
+cstddef
+-
+functional
+-
+exceptions.hpp
+/Users/guowenxuan/文档/学习资料/数据结构/STLite/priority_queue/exceptions.hpp
+set
+-
+
