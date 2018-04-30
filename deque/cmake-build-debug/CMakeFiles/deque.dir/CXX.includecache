@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/guowenxuan/文档/学习资料/数据结构/STLite/deque/data/four.memcheck/code.cpp
+iostream
+-
+cstdio
+-
+cstring
+-
+queue
+-
+cstdlib
+-
+ctime
+-
+cmath
+-
+../../deque.hpp
+/Users/guowenxuan/文档/学习资料/数据结构/STLite/deque/deque.hpp
+../../exceptions.hpp
+/Users/guowenxuan/文档/学习资料/数据结构/STLite/deque/exceptions.hpp
+
+/Users/guowenxuan/文档/学习资料/数据结构/STLite/deque/deque.hpp
+exceptions.hpp
+/Users/guowenxuan/文档/学习资料/数据结构/STLite/deque/exceptions.hpp
+cstddef
+-
+
+/Users/guowenxuan/文档/学习资料/数据结构/STLite/deque/exceptions.hpp
+cstddef
+-
+cstring
+-
+string
+-
+
