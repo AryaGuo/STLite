@@ -32,8 +32,66 @@ namespace sjtu {
                 Bar = other.Bar;
                 data = new T(other.data);
             }
+            node* operator+(const int &n) const{
+                auto pos = this->pos();
+                node* res = const_cast<node*>(this);
+                if(pos + n <= this->Bar->sz) {
+                    for(int i = 0; i < n; i++)
+                        res = res->nxt;
+                    return res;
+                }
+                auto cnt = n - this->Bar->sz + pos - 1;
+                auto newBar = Bar->nxt;
+                if(!newBar)
+                    throw invalid_iterator();
+                res = newBar->head;
+                while(cnt && newBar->sz <= cnt) {
+                    cnt -= newBar->sz;
+                    newBar = newBar->nxt;
+                    if(!newBar)
+                        throw invalid_iterator();
+                    res = newBar->head;
+                }
+                for(int i = 0; i < cnt; i++)
+                    res = res->nxt;
+                return res;
+            }
+            node* operator-(const int &n) const{
+                auto pos = this->pos();
+                node* res = const_cast<node*>(this);
+                if(pos - n >= 1) {
+                    for(int i = 0; i < n; i++)
+                        res = res->pre;
+                    return res;
+                }
+                auto cnt = n - pos;
+                auto newBar = Bar->pre;
+                if(!newBar)
+                    throw invalid_iterator();
+                res = newBar->tail;
+                while(cnt && newBar->sz <= cnt) {
+                    cnt -= newBar->sz;
+                    newBar = newBar->pre;
+                    if(!newBar)
+                        throw invalid_iterator();
+                    res = newBar->tail;
+                }
+                for(int i = 0; i < cnt; i++)
+                    res = res->pre;
+                return res;
+            }
             ~node() {
                 delete data;
+            }
+
+            int pos() const{
+                int cnt = 1;
+                auto tmp = this->Bar->head;
+                while(tmp != this) {
+                    tmp = tmp->nxt;
+                    cnt++;
+                }
+                return cnt;
             }
         };
 
@@ -84,8 +142,6 @@ namespace sjtu {
                 now = tmp;
             }
             delete Bar;
-            now = nullptr;
-            Bar = nullptr;
         }
 
     public:
@@ -110,30 +166,7 @@ namespace sjtu {
                     return this->operator-(-n);
                 try {
                     iterator res = *this;
-                    bar* Bar = res.p->Bar;
-                    int cnt = n;
-                    while(cnt && res.p->nxt)
-                        res.p = res.p->nxt, cnt--;
-                    if(cnt == 0)
-                        return res;
-                    cnt--;
-                    Bar = Bar->nxt;
-                    if(!Bar)
-                        throw -1;
-                    res.p = Bar->head;
-                    while(cnt && Bar->sz <= cnt) {
-                        cnt -= Bar->sz;
-                        Bar = Bar->nxt;
-                        if(!Bar)
-                            throw -1;
-                        res.p = Bar->head;
-                    }
-                    while(cnt) {
-                        if(!res.p->nxt)
-                            throw -1;
-                        res.p = res.p->nxt, cnt--;
-                    }
-                    return iterator(this->Deq, res.p);
+                    return iterator(this->Deq, *res.p + n);
                 }
                 catch(...) {
                     throw invalid_iterator();
@@ -144,30 +177,7 @@ namespace sjtu {
                     return this->operator+(-n);
                 try {
                     iterator res = *this;
-                    bar* Bar = res.p->Bar;
-                    int cnt = n;
-                    while(cnt && res.p->pre)
-                        res.p = res.p->pre, cnt--;
-                    if(cnt == 0)
-                        return res;
-                    cnt--;
-                    Bar = Bar->pre;
-                    if(!Bar)
-                        throw -1;
-                    res.p = Bar->tail;
-                    while(cnt && Bar->sz <= cnt) {
-                        cnt -= Bar->sz;
-                        Bar = Bar->pre;
-                        if(!Bar)
-                            throw -1;
-                        res.p = Bar->tail;
-                    }
-                    while(cnt) {
-                        if(!res.p->pre)
-                            throw -1;
-                        res.p = res.p->pre, cnt--;
-                    }
-                    return iterator(this->Deq, res.p);
+                    return iterator(this->Deq, *res.p - n);
                 }
                 catch(...) {
                     throw invalid_iterator();
@@ -324,30 +334,7 @@ namespace sjtu {
                     return this->operator-(-n);
                 try {
                     const_iterator res = *this;
-                    bar* Bar = res.p->Bar;
-                    int cnt = n;
-                    while(cnt && res.p->nxt)
-                        res.p = res.p->nxt, cnt--;
-                    if(cnt == 0)
-                        return res;
-                    cnt--;
-                    Bar = Bar->nxt;
-                    if(!Bar)
-                        throw -1;
-                    res.p = Bar->head;
-                    while(cnt && Bar->sz <= cnt) {
-                        cnt -= Bar->sz;
-                        Bar = Bar->nxt;
-                        if(!Bar)
-                            throw -1;
-                        res.p = Bar->head;
-                    }
-                    while(cnt) {
-                        if(!res.p->nxt)
-                            throw -1;
-                        res.p = res.p->nxt, cnt--;
-                    }
-                    return const_iterator(this->Deq, res.p);
+                    return const_iterator(this->Deq, *res.p + n);
                 }
                 catch(...) {
                     throw invalid_iterator();
@@ -358,30 +345,7 @@ namespace sjtu {
                     return this->operator+(-n);
                 try {
                     const_iterator res = *this;
-                    bar* Bar = res.p->Bar;
-                    int cnt = n;
-                    while(cnt && res.p->pre)
-                        res.p = res.p->pre, cnt--;
-                    if(cnt == 0)
-                        return res;
-                    cnt--;
-                    Bar = Bar->pre;
-                    if(!Bar)
-                        throw -1;
-                    res.p = Bar->tail;
-                    while(cnt && Bar->sz <= cnt) {
-                        cnt -= Bar->sz;
-                        Bar = Bar->pre;
-                        if(!Bar)
-                            throw -1;
-                        res.p = Bar->tail;
-                    }
-                    while(cnt) {
-                        if(!res.p->pre)
-                            throw -1;
-                        res.p = res.p->pre, cnt--;
-                    }
-                    return const_iterator(this->Deq, res.p);
+                    return const_iterator(this->Deq, *res.p - n);
                 }
                 catch(...) {
                     throw invalid_iterator();
@@ -592,10 +556,18 @@ namespace sjtu {
                 tmp -= pt->sz;
                 pt = pt->nxt;
             }
-            auto res = pt->head;
-            for(auto i = 1; i < tmp; i++)
-                res = res->nxt;
-            return *res->data;
+            if(tmp < pt->sz / 2) {
+                auto res = pt->head;
+                for(auto i = 1; i < tmp; i++)
+                    res = res->nxt;
+                return *res->data;
+            }
+            else {
+                auto res = pt->tail;
+                for(auto i = pt->sz; i > tmp; i--)
+                    res = res->pre;
+                return *res->data;
+            }
         }
 
         const T & at(const size_t &pos) const {
@@ -607,10 +579,18 @@ namespace sjtu {
                 tmp -= pt->sz;
                 pt = pt->nxt;
             }
-            auto res = pt->head;
-            for(auto i = 1; i < tmp; i++)
-                res = res->nxt;
-            return *res->data;
+            if(tmp < pt->sz / 2) {
+                auto res = pt->head;
+                for(auto i = 1; i < tmp; i++)
+                    res = res->nxt;
+                return *res->data;
+            }
+            else {
+                auto res = pt->tail;
+                for(auto i = pt->sz; i > tmp; i--)
+                    res = res->pre;
+                return *res->data;
+            }
         }
 
         T & operator[](const size_t &pos) {

@@ -123,32 +123,32 @@ deque/fast:
 	$(MAKE) -f CMakeFiles/deque.dir/build.make CMakeFiles/deque.dir/build
 .PHONY : deque/fast
 
-data/four.memcheck/code.o: data/four.memcheck/code.cpp.o
+data/one/code.o: data/one/code.cpp.o
 
-.PHONY : data/four.memcheck/code.o
+.PHONY : data/one/code.o
 
 # target to build an object file
-data/four.memcheck/code.cpp.o:
-	$(MAKE) -f CMakeFiles/deque.dir/build.make CMakeFiles/deque.dir/data/four.memcheck/code.cpp.o
-.PHONY : data/four.memcheck/code.cpp.o
+data/one/code.cpp.o:
+	$(MAKE) -f CMakeFiles/deque.dir/build.make CMakeFiles/deque.dir/data/one/code.cpp.o
+.PHONY : data/one/code.cpp.o
 
-data/four.memcheck/code.i: data/four.memcheck/code.cpp.i
+data/one/code.i: data/one/code.cpp.i
 
-.PHONY : data/four.memcheck/code.i
+.PHONY : data/one/code.i
 
 # target to preprocess a source file
-data/four.memcheck/code.cpp.i:
-	$(MAKE) -f CMakeFiles/deque.dir/build.make CMakeFiles/deque.dir/data/four.memcheck/code.cpp.i
-.PHONY : data/four.memcheck/code.cpp.i
+data/one/code.cpp.i:
+	$(MAKE) -f CMakeFiles/deque.dir/build.make CMakeFiles/deque.dir/data/one/code.cpp.i
+.PHONY : data/one/code.cpp.i
 
-data/four.memcheck/code.s: data/four.memcheck/code.cpp.s
+data/one/code.s: data/one/code.cpp.s
 
-.PHONY : data/four.memcheck/code.s
+.PHONY : data/one/code.s
 
 # target to generate assembly for a file
-data/four.memcheck/code.cpp.s:
-	$(MAKE) -f CMakeFiles/deque.dir/build.make CMakeFiles/deque.dir/data/four.memcheck/code.cpp.s
-.PHONY : data/four.memcheck/code.cpp.s
+data/one/code.cpp.s:
+	$(MAKE) -f CMakeFiles/deque.dir/build.make CMakeFiles/deque.dir/data/one/code.cpp.s
+.PHONY : data/one/code.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... deque"
-	@echo "... data/four.memcheck/code.o"
-	@echo "... data/four.memcheck/code.i"
-	@echo "... data/four.memcheck/code.s"
+	@echo "... data/one/code.o"
+	@echo "... data/one/code.i"
+	@echo "... data/one/code.s"
 .PHONY : help
 
 

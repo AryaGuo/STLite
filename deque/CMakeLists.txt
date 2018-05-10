@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(deque
         #data/five/code.cpp
         #data/four/code.cpp
-        data/four.memcheck/code.cpp
-        #data/one/code.cpp
+        #data/four.memcheck/code.cpp
+        data/one/code.cpp
         #main.cpp
         #data/one.memcheck/code.cpp
         #data/six/code.cpp
